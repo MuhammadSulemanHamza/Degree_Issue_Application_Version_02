@@ -8,6 +8,15 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
+    private String upload_status;
+
+    public String getUpload_status() {
+        return upload_status;
+    }
+
+    public void setUpload_status(String upload_status) {
+        this.upload_status = upload_status;
+    }
 
     public String getRole() {
         return role;

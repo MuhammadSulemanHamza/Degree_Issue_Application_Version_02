@@ -45,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String STATUS = "status";
     private static final String COORDINATOR_REMARKS = "coRemarks";
     private static final String HOD_REMARKS = "hodRemarkds";
-    private static final int UPLOAD_STATUS = 0;
+    private static final String UPLOAD_STATUS = "pending";
     private static final String CREATE_APPLICATION_TABLE = "CREATE TABLE IF NOT EXISTS " + APPLICATION_TABLE +
             "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             DEGREE + " TEXT, " +
@@ -67,7 +67,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             CONTACT + " TEXT, " +
             STATUS + " TEXT, " +
             COORDINATOR_REMARKS + " TEXT, " +
-            HOD_REMARKS + " TEXT)";
+            HOD_REMARKS + " TEXT, " +
+            UPLOAD_STATUS + " TEXT" + ")";
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     // User table name
     private static final String TABLE_USER = "user";
@@ -81,7 +82,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // create table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
-            + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT," + COLUMN_USER_ROLE + " TEXT" + ")";
+            + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT," + COLUMN_USER_ROLE + " TEXT, " +
+            UPLOAD_STATUS + " TEXT" + ")";
     // drop table sql query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
@@ -303,6 +305,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put(STATUS, status);
         db.update(APPLICATION_TABLE, cv, ID + "=?", new String[]{String.valueOf(id)});
     }
+
+    public void updateAppUploadStatus(int id, String status){
+        ContentValues cv = new ContentValues();
+        cv.put(UPLOAD_STATUS, status);
+        db.update(APPLICATION_TABLE, cv, ID + "=?", new String[]{String.valueOf(id)});
+    }
+
+    public void updateUserUploadStatus(int id, String status){
+        ContentValues cv = new ContentValues();
+        cv.put(UPLOAD_STATUS, status);
+        db.update(TABLE_USER, cv, ID + "=?", new String[]{String.valueOf(id)});
+    }
+
 
     public void updateTask(int id, String task){
         ContentValues cv = new ContentValues();

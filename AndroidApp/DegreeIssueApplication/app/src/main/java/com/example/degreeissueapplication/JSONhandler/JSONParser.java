@@ -22,7 +22,7 @@ public class JSONParser extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
-            String url = "http://192.168.10.7:8000/api/list/";
+            String url = "http://192.168.10.7:8000/api/list";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);

@@ -25,8 +25,9 @@ public class DegreeIssueModel implements Serializable {
     private String status;
     private String coordinator_remarks;
     private String hod_remarks;
+    private String upload_status;
 
-    public DegreeIssueModel(String degree, String session, String rollNumber, String batch, String department, String regNum, String reason, String rev_from, String rev_to, String candidateName, String cnic, String fatherName, String cgpa, String dob, String institute, String address, String contact, String status, String coordinator_remarks, String hod_remarks) {
+    public DegreeIssueModel(String degree, String session, String rollNumber, String batch, String department, String regNum, String reason, String rev_from, String rev_to, String candidateName, String cnic, String fatherName, String cgpa, String dob, String institute, String address, String contact, String status, String coordinator_remarks, String hod_remarks, String upload_status) {
         this.degree = degree;
         this.session = session;
         this.rollNumber = rollNumber;
@@ -47,9 +48,18 @@ public class DegreeIssueModel implements Serializable {
         this.status = status;
         this.coordinator_remarks = coordinator_remarks;
         this.hod_remarks = hod_remarks;
+        this.upload_status = upload_status;
     }
 
     public DegreeIssueModel() {
+    }
+
+    public String getUpload_status() {
+        return upload_status;
+    }
+
+    public void setUpload_status(String upload_status) {
+        this.upload_status = upload_status;
     }
 
     public int getId() {
